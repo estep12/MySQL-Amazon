@@ -59,31 +59,33 @@ function startSearch() {
                 if (err) throw err;
                 if (res.length === 0) {
                     console.log("Error: Please Select a Valid Item ID");
-                    displayProducts();
+                    console.log("---------------------------------------");
                     
+                    displayProducts();
+
                 } else {
                     var productResult = res[0]
                     if (quantity <= productResult.stock_quantity) {
                         console.log("You lucked out, the item is in stock!!");
-                        var updateQuery = "UPDATE products SET stock_quantity = " + (productResult.stock_quantity - quantity) +  " WHERE item_id = " + itemID;
-                        
-                        
-                        connection.query(updateQuery, function(err, res){
+                        var updateQuery = "UPDATE products SET stock_quantity = " + (productResult.stock_quantity - quantity) + " WHERE item_id = " + itemID;
+
+
+                        connection.query(updateQuery, function (err, res) {
                             if (err) throw err;
 
                             console.log("Your order has been placed successfully! Your total is $" + productResult.price.toFixed(2) * quantity);
                             console.log("Thank You for shopping with us!");
                             console.log("-----------------------------------------------------------------");
 
-                            
-                            
-                            
+
                         })
                     } else {
                         console.log("Insufficient quantity!");
                         console.log(("Please enter a valid quantity"));
+                        console.log("------------------------------------");
+
                         displayProducts();
-                        
+
 
                     }
                 }
