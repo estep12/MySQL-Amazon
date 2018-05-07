@@ -1,4 +1,4 @@
-# MySQL-Amazon
+# MySQL-Bamazon
 
 ## Description
 
